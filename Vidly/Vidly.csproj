@@ -223,6 +223,14 @@
     <Compile Include="Migrations\202007291336565_AddIDGenre.Designer.cs">
       <DependentUpon>202007291336565_AddIDGenre.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007291519219_AddedNullableReleaseDateMovie.cs" />
+    <Compile Include="Migrations\202007291519219_AddedNullableReleaseDateMovie.Designer.cs">
+      <DependentUpon>202007291519219_AddedNullableReleaseDateMovie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007291530070_RemovedNullableReleaseDateMovie.cs" />
+    <Compile Include="Migrations\202007291530070_RemovedNullableReleaseDateMovie.Designer.cs">
+      <DependentUpon>202007291530070_RemovedNullableReleaseDateMovie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -355,6 +363,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007291336565_AddIDGenre.resx">
       <DependentUpon>202007291336565_AddIDGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007291519219_AddedNullableReleaseDateMovie.resx">
+      <DependentUpon>202007291519219_AddedNullableReleaseDateMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007291530070_RemovedNullableReleaseDateMovie.resx">
+      <DependentUpon>202007291530070_RemovedNullableReleaseDateMovie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
