@@ -137,3 +137,4 @@ C:\Projects\Vidly\Vidly\obj\Debug\Vidly.Migrations.AddCostumerBirthdate.resource
 C:\Projects\Vidly\Vidly\obj\Debug\Vidly.Migrations.AddGenreMovies.resources
 C:\Projects\Vidly\Vidly\obj\Debug\Vidly.Migrations.AddGenreMovies1.resources
 C:\Projects\Vidly\Vidly\obj\Debug\Vidly.Migrations.AddGenreTypes.resources
+C:\Projects\Vidly\Vidly\obj\Debug\Vidly.Migrations.AddIDGenre.resources
