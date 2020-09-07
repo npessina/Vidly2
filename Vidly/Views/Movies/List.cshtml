@@ -44,8 +44,10 @@
                             return "<button class='btn-link js-delete' data-movie-id=" + data + ">Delete</button>";
                         }
                     }
-                ]
+                ],
+                pageLength: 10
             });
+
 
             $("#movies").on("click", ".js-delete", function () {
                 var button = $(this);

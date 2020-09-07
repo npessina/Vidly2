@@ -1,5 +1,4 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace Vidly
 {
@@ -16,7 +15,7 @@ namespace Vidly
                         "~/Scripts/datatables/jquery.datatables.js",
                         "~/Scripts/datatables/datatables.bootstrap.js",
                         "~/Scripts/typeahead.bundle.js",
-                        "~/Scripts/toastr.js")); 
+                        "~/Scripts/toastr.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -32,6 +31,13 @@ namespace Vidly
                       "~/Content/typeahead.css",
                       "~/Content/toastr.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
+                      "~/Scripts/jquery-ui-{version}.js"));
+
+            bundles.Add(new StyleBundle("~/Content/cssjqryUi").Include(
+                        "~/Content/themes/base/jquery-ui.css"));
+
         }
     }
 }

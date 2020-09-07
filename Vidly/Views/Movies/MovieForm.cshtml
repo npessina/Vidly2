@@ -6,9 +6,9 @@
 
 <h2>@Model.Title</h2>
 
-@using (Html.BeginForm("Save", "Movies"))
+@using (Html.BeginForm())
 {
-    @Html.ValidationSummary(true, "Please fix the following errors.");
+    @Html.ValidationSummary(true, "Please fix the following errors.")
     <div class="form-group">
         @Html.LabelFor(m => m.Name)
         @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
@@ -16,7 +16,7 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.ReleaseDate)
-        @Html.TextBoxFor(m => m.ReleaseDate, "{0:d MMM yyyy}", new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.ReleaseDate, "{0:d MMMM yyyy}", new { @class = "form-control datepicker", @id = "releaseDate", @dateValue = Model.ReleaseDate.HasValue ? Model.ReleaseDate.Value : DateTime.Today })
         @Html.ValidationMessageFor(m => m.ReleaseDate)
     </div>
     <div class="form-group">
@@ -37,4 +37,23 @@
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+
+    <script>
+        $(document).ready(function () {
+            let date = new Date($("#releaseDate").attr("dateValue"));
+
+            $('.datepicker').datepicker({
+                dateFormat: "d MM yy",
+                autoclose: true,
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-100:+0"
+            });
+
+            $('.datepicker').datepicker("setDate", date);
+
+        });
+    </script>
 }

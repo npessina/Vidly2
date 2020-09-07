@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModels;
-using System.Data.Entity;
 
 namespace Vidly.Controllers
 {
@@ -22,44 +19,18 @@ namespace Vidly.Controllers
             _context.Dispose();
         }
 
-        // GET: Movies/Random
-        public ActionResult Random()
-
-        {
-            var movie = new Movie() { Name = "Shrek" };
-            var customers = new List<Customer>
-            {
-                new Customer { Name = "Customer 1"},
-                new Customer { Name = "Customer 2"}
-            };
-
-            var viewModel = new RandomMovieViewModel
-            {
-                Movie = movie,
-                Customers = customers
-            };
-
-            return View(viewModel);
-        }
-        [Route("movies/released/{year:regex(\\d{4})}/{month:regex(\\d{2}):range(1, 12)}")]
-        public ActionResult ByReleaseDate(int year, int month)
-        {
-            return Content(year + "/" + month);
-        }
-
         public ActionResult Index()
         {
-            if (User.IsInRole(RoleName.CanManageMovies))
+            if (User.IsInRole(RoleName.Admin))
                 return View("List");
 
             return View("ReadOnlyList");
         }
 
-        [Authorize(Roles = RoleName.CanManageMovies)]
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult Edit(int id)
         {
             var movie = _context.Movies.SingleOrDefault(c => c.Id == id);
-
 
             if (movie == null)
                 return HttpNotFound();
@@ -72,7 +43,7 @@ namespace Vidly.Controllers
             return View("MovieForm", viewModel);
         }
 
-        [Authorize(Roles = RoleName.CanManageMovies)]
+        [Authorize(Roles = RoleName.Admin)]
         public ActionResult New()
         {
             var genres = _context.Genres.ToList();
@@ -84,11 +55,12 @@ namespace Vidly.Controllers
 
             return View("MovieForm", viewModel);
         }
-        
+
         [HttpPost]
+        [ActionName("New")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = RoleName.CanManageMovies)]
-        public ActionResult Save(Movie movie)
+        [Authorize(Roles = RoleName.Admin)]
+        public ActionResult SaveNew(Movie movie)
         {
             if (!ModelState.IsValid)
             {
@@ -100,21 +72,36 @@ namespace Vidly.Controllers
                 return View("MovieForm", viewModel);
             }
 
-            if (movie.Id == 0)
+            movie.DateAdded = DateTime.Now;
+            movie.StockAvailable = movie.Stock;
+            _context.Movies.Add(movie);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Movies");
+        }
+
+        [HttpPost]
+        [ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.Admin)]
+        public ActionResult SaveEdit(Movie movie)
+        {
+            if (!ModelState.IsValid)
             {
-                movie.DateAdded = DateTime.Now;
-                _context.Movies.Add(movie);
+                var viewModel = new MovieFormViewModel(movie)
+                {
+                    Genre = _context.Genres.ToList()
+                };
+
+                return View("MovieForm", viewModel);
             }
 
-            else
-            {
-                var movieInDb = _context.Movies.Single(c => c.Id == movie.Id);
+            var movieInDb = _context.Movies.Single(c => c.Id == movie.Id);
 
-                movieInDb.Name = movie.Name;
-                movieInDb.ReleaseDate = movie.ReleaseDate;
-                movieInDb.GenreId = movie.GenreId;
-                movieInDb.Stock = movie.Stock;
-            }
+            movieInDb.Name = movie.Name;
+            movieInDb.ReleaseDate = movie.ReleaseDate;
+            movieInDb.GenreId = movie.GenreId;
+            movieInDb.Stock = movie.Stock;
 
             _context.SaveChanges();
 

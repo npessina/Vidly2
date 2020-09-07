@@ -154,3 +154,6 @@ C:\Projects\Vidly\Vidly\obj\Debug\Vidly.Migrations.AddPhoneRegisterViewModel.res
 C:\Projects\Vidly\Vidly\obj\Debug\Vidly.Migrations.AddedRentals.resources
 C:\Projects\Vidly\Vidly\obj\Debug\Vidly.Migrations.AddStockAvailableToMovieModel.resources
 C:\Projects\Vidly\Vidly\obj\Debug\Vidly.csprojAssemblyReference.cache
+C:\Projects\Vidly\Vidly\bin\es\System.Net.Http.Formatting.resources.dll
+C:\Projects\Vidly\Vidly\bin\es\System.Web.Http.resources.dll
+C:\Projects\Vidly\Vidly\bin\es\System.Web.Http.WebHost.resources.dll

@@ -10,13 +10,10 @@
 </head>
 <body>
     @Html.Partial("_NavBar")
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Vidly</p>
-        </footer>
-    </div>
+        <div class="container jumbo jumbotron body-content">
+            @RenderBody()
+        </div>
+ 
 
     @Scripts.Render("~/bundles/lib")
     @RenderSection("scripts", required: false)

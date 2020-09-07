@@ -1,6 +1,8 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-image: url('images/background.jpg');
+    background-size:cover;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -33,4 +35,9 @@ textarea {
 
 .validation-summary-errors {
     color: red;
+}
+
+.jumbo {
+    padding: 20px;
+    margin: 30px auto;
 }
